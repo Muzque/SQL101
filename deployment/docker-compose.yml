@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: sql101_db
+    container_name: sql101_db
+    build:
+        dockerfile: db/Dockerfile
+    volumes:
+      - sql101_db_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_PASSWORD: test
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    container_name: sql101_adminer
+    ports:
+      - "8080:8080"
