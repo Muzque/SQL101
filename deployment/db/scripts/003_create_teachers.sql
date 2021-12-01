@@ -4,6 +4,6 @@ CREATE TABLE Teacher (
     PRIMARY KEY (id)
 );
 
-INSERT INTO Teacher values('Charles');
-INSERT INTO Teacher values('Darren');
-INSERT INTO Teacher values('Edison');
+INSERT INTO Teacher values(DEFAULT, 'Charles');
+INSERT INTO Teacher values(DEFAULT, 'Darren');
+INSERT INTO Teacher values(DEFAULT, 'Edison');

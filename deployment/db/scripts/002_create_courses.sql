@@ -5,6 +5,6 @@ CREATE TABLE Course (
     PRIMARY KEY (id)
 );
 
-INSERT INTO Course values('Chinese', 2);
-INSERT INTO Course values('Math', 1);
-INSERT INTO Course values('English', 3);
+INSERT INTO Course values(DEFAULT, 'Chinese', 2);
+INSERT INTO Course values(DEFAULT, 'Math', 1);
+INSERT INTO Course values(DEFAULT, 'English', 3);
