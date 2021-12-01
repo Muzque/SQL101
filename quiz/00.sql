@@ -1,0 +1,6 @@
+/*
+THIS IS AN EXAMPLE QUIZ!
+*/
+
+SELECT *
+FROM student;

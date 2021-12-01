@@ -1,0 +1,70 @@
+#!/bin/bash
+readonly CONTAINER="sql101_db"
+readonly USER="postgres"
+BLUE=$(tput setaf 4)
+WHITE=$(tput sgr0)
+
+function prints() {
+    line="${1}"
+    printf "${BLUE}${line}${WHITE}"
+}
+
+
+function display_query() {
+    quiz=${1}
+    silent=true
+
+    while IFS= read -r line; do
+      if [ "${line}" == "/*" ];then
+          prints "\nYour quiz:\n"
+      elif [ "${line}" == "*/" ];then
+          prints "\nYour query:\n"
+      else
+          echo "${line}"
+      fi
+    done < "./quiz/${quiz}.sql"
+}
+
+function display_result() {
+    command=${1}
+
+    prints "\nYour result:\n"
+    eval ${command}
+}
+
+function usage() {
+    cat <<EOUSAGE
+Usage: $(basename $0) [-h] [-q]
+  -h                to show this help
+  -q                to select quiz solution
+EOUSAGE
+}
+
+function main() {
+    CMD="docker exec -i ${CONTAINER} psql -U ${USER} < ./quiz"
+    QUIZ=""
+
+    while getopts "hq:" flag; do
+        case ${flag} in
+        q)
+          QUIZ="${OPTARG}"
+          ;;
+        h)
+            usage
+            exit 1
+            ;;
+        esac
+    done
+
+    if [ -z ${QUIZ} ];then
+      echo "Please select a quiz."
+      exit 1
+    fi
+
+    CMD="${CMD}/${QUIZ}.sql"
+    prints "Execute command: ${CMD}\n"
+    display_query "${QUIZ}"
+    display_result "${CMD}"
+}
+
+main "$@"
