@@ -3,10 +3,17 @@ readonly CONTAINER="sql101_db"
 readonly USER="postgres"
 BLUE=$(tput setaf 4)
 WHITE=$(tput sgr0)
+RED=$(tput setaf 1)
 
 function prints() {
     line="${1}"
     printf "${BLUE}${line}${WHITE}"
+}
+
+function printe() {
+    line="${1}"
+    printf "${RED}${line}${WHITE}\n"
+    exit 1
 }
 
 
@@ -21,7 +28,7 @@ function display_query() {
       elif [ -n "${line}" ];then
           echo "${line}"
       fi
-    done < "./quiz/${quiz}"
+    done < "${quiz}"
 }
 
 function display_result() {
@@ -40,14 +47,17 @@ EOUSAGE
 }
 
 function main() {
-    CMD="docker exec -i ${CONTAINER} psql -U ${USER} < ./quiz"
+    CMD="docker exec -i ${CONTAINER} psql -U ${USER}"
     QUIZ=""
 
-    while getopts "hq:" flag; do
+    while getopts "hq:s:" flag; do
         case ${flag} in
         q)
-          QUIZ="${OPTARG}.sql"
-          ;;
+            QUIZ="./quiz/${OPTARG}.sql"
+            ;;
+        s)
+            QUIZ="./solution/${OPTARG}.sql"
+            ;;
         h)
             usage
             exit 1
@@ -56,11 +66,13 @@ function main() {
     done
 
     if [ -z ${QUIZ} ];then
-      echo "Please select a quiz."
-      exit 1
+      printe "Please select a quiz."
+    fi
+    if [ ! -f ${QUIZ} ];then
+      printe "FileNotFound: ${QUIZ}"
     fi
 
-    CMD="${CMD}/${QUIZ}"
+    CMD="${CMD} < ${QUIZ}"
     prints "Execute command: ${CMD}\n"
     display_query "${QUIZ}"
     display_result "${CMD}"
