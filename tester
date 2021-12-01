@@ -12,17 +12,16 @@ function prints() {
 
 function display_query() {
     quiz=${1}
-    silent=true
 
     while IFS= read -r line; do
       if [ "${line}" == "/*" ];then
           prints "\nYour quiz:\n"
       elif [ "${line}" == "*/" ];then
           prints "\nYour query:\n"
-      else
+      elif [ -n "${line}" ];then
           echo "${line}"
       fi
-    done < "./quiz/${quiz}.sql"
+    done < "./quiz/${quiz}"
 }
 
 function display_result() {
@@ -47,7 +46,7 @@ function main() {
     while getopts "hq:" flag; do
         case ${flag} in
         q)
-          QUIZ="${OPTARG}"
+          QUIZ="${OPTARG}.sql"
           ;;
         h)
             usage
@@ -61,7 +60,7 @@ function main() {
       exit 1
     fi
 
-    CMD="${CMD}/${QUIZ}.sql"
+    CMD="${CMD}/${QUIZ}"
     prints "Execute command: ${CMD}\n"
     display_query "${QUIZ}"
     display_result "${CMD}"

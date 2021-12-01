@@ -14,11 +14,11 @@ services:
     ports:
       - "50000:5432"
 
-  adminer:
-    image: adminer
-    container_name: sql101_adminer
-    ports:
-      - "50001:8080"
+#  adminer:
+#    image: adminer
+#    container_name: sql101_adminer
+#    ports:
+#      - "50001:8080"
 
 volumes:
   sql101_db_data:
