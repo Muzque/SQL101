@@ -9,10 +9,14 @@ Practice your SQL query.
 2. Write down your solution under `quiz` folder.
 3. Check out your result by tester.
     ```shell
-    $ ./tester -q 00
+    $ ./tester -q ${quiz_id}
     ```
 
-   Example output:
+   Example:
+   ```shell
+   $ ./tester -q 00
+   ```
+   output:
    ```shell
    Execute command: docker exec -i sql101_db psql -U postgres < ./quiz/00.sql
    
@@ -37,6 +41,11 @@ Practice your SQL query.
      8 | Abby  | 1992-03-01 | F
    (8 rows)
    ```
+
+## Get Suggested Solution
+```shell
+$ ./tester -s ${quiz_id}
+```
 
 ## Tables
 1. Student
