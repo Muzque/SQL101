@@ -3,14 +3,14 @@ Practice your SQL query.
 
 ## Get Started
 1. Launch database with default tables and data.
-   ```shell
-   $ ./launch -d
-   ```
+```shell
+$ ./launch -d
+```
 2. Write down your solution under `quiz` folder.
 3. Check out your result by tester.
-    ```shell
-    $ ./tester -q ${quiz_id}
-    ```
+ ```shell
+ $ ./tester -q ${quiz_id}
+ ```
 
 Example:
 ```shell
