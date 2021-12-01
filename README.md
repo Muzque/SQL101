@@ -22,7 +22,6 @@ Your quiz:
 THIS IS AN EXAMPLE QUIZ!
 
 Your query:
-
 SELECT *
 FROM student;
 
