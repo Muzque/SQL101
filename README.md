@@ -1,6 +1,5 @@
 # SQL101
-## Purpose
-Practise your SQL query.
+Practice your SQL query.
 
 ## Get Started
 1. Launch database with default tables and data.
@@ -13,31 +12,31 @@ Practise your SQL query.
     $ ./tester -q 00
     ```
 
-Example output:
-```shell
-Execute command: docker exec -i sql101_db psql -U postgres < ./quiz/00.sql
-
-Your quiz:
-THIS IS AN EXAMPLE QUIZ!
-
-Your query:
-
-SELECT *
-FROM student;
-
-Your result:
- id | name  |    age     | sex
-----+-------+------------+-----
-  1 | John  | 1990-01-01 | M
-  2 | James | 1990-12-21 | M
-  3 | Sean  | 1990-05-21 | M
-  4 | Omar  | 1990-08-06 | M
-  5 | Tina  | 1991-12-01 | F
-  6 | Helen | 1989-07-01 | F
-  7 | Gina  | 1990-01-20 | F
-  8 | Abby  | 1992-03-01 | F
-(8 rows)
-```
+   Example output:
+   ```shell
+   Execute command: docker exec -i sql101_db psql -U postgres < ./quiz/00.sql
+   
+   Your quiz:
+   THIS IS AN EXAMPLE QUIZ!
+   
+   Your query:
+   
+   SELECT *
+   FROM student;
+   
+   Your result:
+    id | name  |    age     | sex
+   ----+-------+------------+-----
+     1 | John  | 1990-01-01 | M
+     2 | James | 1990-12-21 | M
+     3 | Sean  | 1990-05-21 | M
+     4 | Omar  | 1990-08-06 | M
+     5 | Tina  | 1991-12-01 | F
+     6 | Helen | 1989-07-01 | F
+     7 | Gina  | 1990-01-20 | F
+     8 | Abby  | 1992-03-01 | F
+   (8 rows)
+   ```
 
 ## Tables
 1. Student
